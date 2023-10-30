@@ -1,0 +1,21 @@
+{
+	"connector.class": "io.debezium.connector.mongodb.MongoDbConnector",
+	"mongodb.field.projection.type": "blacklist",
+	"mongodb.password": "${file:/home/appuser/prod-connector-payroll.properties:password}",
+	"mongodb.field.projection.list": "shifts",
+	"tasks.max": "1",
+	"mongodb.user": "${file:/home/appuser/prod-connector-payroll.properties:user}",
+	"transforms": "route",
+	"schema.history.internal.kafka.bootstrap.servers": "kafka1:19091",
+	"collection.include.list": "payroll_db.shift_reporting",
+	"mongodb.ssl.enabled": "true",
+	"transforms.route.type": "org.apache.kafka.connect.transforms.RegexRouter",
+	"topic.prefix": "debezium.mongo_payroll",
+	"transforms.route.regex": "([^.]+)\\.([^.]+)\\.([^.]+)",
+	"mongodb.members.auto.discover": "true",
+	"name": "mongodb_payroll_v3.14",
+	"transforms.route.replacement": "$3",
+	"mongodb.hosts": "clusterproduction01-shard-00-00-pri.ljzc8.mongodb.net:27017,clusterproduction01-shard-00-01-pri.ljzc8.mongodb.net:27017,clusterproduction01-shard-00-02-pri.ljzc8.mongodb.net:27017",
+	"mongodb.auth.source": "admin",
+	"database.include.list": "payroll_db"
+}
